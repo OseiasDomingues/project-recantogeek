@@ -1,70 +1,92 @@
 body {
     background-color: #e9eae9!important;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif!important;
+    font-family: 'Open Sans', sans-serif;
 }
-.navbar{
+
+
+/*NavBar*/
+
+.navbar {
     background-color: #00acb7!important;
 }
-.card{
-    margin-top: 10px!important; 
-    margin-right: 10px;
-    margin-bottom: 10px!important; 
-    width: 250px!important; 
-    height: 200px;
-    align-items: center;
+
+.logo {
+    font-family: 'Lobster', cursive;
+    font-size: 30px!important;
 }
 
-.card h5, h6 {
-    text-align: center; 
-}
 
-.row{
-    align-content: center;
-    justify-content: center;
-}
+/* Navegation */
 
-.card p {
-    text-align: center;
-    font-size: 14px;
-}
-
-.table{
-    width: 1000px!important;
-}
-
-.item{
-    text-decoration: none;
-    width: 250px;
-    height: 200px;
-    color: black;
-
-    
-}
-.item:hover{
-     color: black;
-
-}
-.card:hover{
-    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.315);
-    color:black;
-}
-
-.breadcrumb{
+.breadcrumb {
     margin-top: 5px;
-    margin-bottom: 0px!important;
+    /*margin-bottom: 0px!important;*/
 }
-.breadcrumb a{
+
+.breadcrumb a {
     text-decoration: none;
     color: #333;
 }
 
-.breadcrumb .active{
+.breadcrumb .active {
     font-weight: bold!important;
     text-decoration: none;
     color: rgb(0, 0, 0)!important;
 }
 
-.breadcrumb a:hover{
+.breadcrumb a:hover {
     color: #444;
     text-decoration: underline;
+}
+
+
+/*Cards*/
+
+.container-products {
+    align-content: center;
+    justify-content: center;
+}
+
+.card-all {
+    margin-top: 10px!important;
+    margin-right: 10px;
+    margin-bottom: 10px!important;
+    width: 250px!important;
+    height: 329px;
+    align-items: center;
+}
+
+.card-all h5,
+h6 {
+    text-align: center;
+}
+
+.card-all p {
+    text-align: center;
+    font-size: 14px;
+}
+
+.card-all:hover {
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.315);
+    color: black;
+}
+
+.item-link {
+    display: contents;
+    text-decoration: none;
+    width: 250px;
+    height: 329px;
+    color: black;
+    align-items: center;
+}
+
+.item-link:hover {
+    color: black;
+}
+
+.item-link img {
+    width: auto;
+    height: 250px;
+    padding-top: 10px;
+    padding-left: auto;
 }
