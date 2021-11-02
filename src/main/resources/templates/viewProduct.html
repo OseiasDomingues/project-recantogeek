@@ -58,13 +58,12 @@
     </nav>
     <div class="menu">
         <div class="container">
-            <ul class="nav nav-tabs">
-
+            <ul class="nav">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                        aria-expanded="false"><span class="material-icons-outlined">reorder</span>&nbsp;All Categories</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item " href="#">Action</a></li>
                         <li><a class="dropdown-item" href="#">Another action</a></li>
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                         <li>
@@ -74,7 +73,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link " href="#">Products</a>
+                    <a class="nav-link " href="#">Products </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="#">Client List</a>
@@ -90,18 +89,18 @@
     <div class="container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item active" aria-current="page">Products</li>
+            <li class="breadcrumb-item" ><a href="/products">Products</a></li>
+            <li class="breadcrumb-item active" aria-current="page" th:text="${product.name}"></li>
         </ol>
-        <p class="h4" style>All Products</p>
+        <p class="h4" th:alt="${product.name}"></p>
         <div class="row container-products">
-            <div class="card card-all" th:each="product : ${productsList}">
-                <a class="item-link" th:href="@{/products/{id}(id=${product.id})}">
+            <div class="card card-all">
+
                     <img th:src="@{/images/moleton.jpg}" class="card-img-top product-image" th:alt="${product.name}">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${product.name}"></h5>
                         <p class="card-text" th:text="${product.price}"></p>
                     </div>
-                </a>
             </div>
         </div>
 

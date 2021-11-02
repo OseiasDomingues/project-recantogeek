@@ -12,7 +12,60 @@ body {
 
 .logo {
     font-family: 'Lobster', cursive;
-    font-size: 30px!important;
+    font-size: 40px!important;
+    padding-left: 20px;
+}
+
+.shopping-cart {
+    font-size: 36px!important;
+    color: #fff;
+}
+
+.search-form {
+    /*padding-right: 150px;*/
+    width: 600px;
+    border: #eee;
+}
+
+.form-control {
+    border-radius: 1.2rem!important;
+}
+
+.nav-search {
+    justify-content: space-between;
+    width: auto;
+}
+
+.div-search {
+    width: 850px;
+    display: flex;
+    justify-content: center;
+}
+
+.myAccount {
+    padding-right: 25px;
+    background-color: transparent;
+    display: flex;
+}
+
+.myAccount .btn {
+    color: #fff;
+    margin-right: 10px;
+}
+
+.myAccount .btn:focus {
+    outline: 0;
+    box-shadow: none;
+}
+
+.menu {
+    background-color: white;
+}
+
+.menu a {
+    display: flex;
+    align-items: center;
+    color: #00acb7;
 }
 
 
