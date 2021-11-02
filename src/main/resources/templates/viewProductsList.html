@@ -44,12 +44,12 @@
                     <li class="breadcrumb-item active" aria-current="page">Products</li>
                 </ol>
                 <div class="row">
-                    <div class="card" th:each="product : ${products}">
-                        <a class="item" th:href="${(#mvc.url('PC#findByID').arg(0, product.id)).build())">
+                    <div class="card" th:each="product : ${productsList}">
+                        <a th:href="@{/products/{id}(id=${product.id})}">
                             <img src="../images/moleton.png" class="card-img-top" alt="image">
                             <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                <h5 class="card-title" th:text="${product.name}"></h5>
+                                <p class="card-text" th:text="${product.price}"></p>
                             </div>
                         </a>
                     </div>
