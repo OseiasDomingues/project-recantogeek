@@ -3,6 +3,7 @@ package com.projectdl.recantogeek.services.impl;
 import com.projectdl.recantogeek.models.ProductModel;
 import com.projectdl.recantogeek.repositories.ProductRepository;
 import com.projectdl.recantogeek.services.ProductService;
+import com.projectdl.recantogeek.services.exceptions.PageNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductModel findById(Long id) {
-        return productRepository.findById(id).orElseThrow(NullPointerException::new);
+        return productRepository.findById(id).orElseThrow(() -> new PageNotFound("Page not found"));
     }
 
     @Override

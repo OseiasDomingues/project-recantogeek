@@ -23,7 +23,6 @@ body {
 .logo {
     font-family: 'Lobster', cursive;
     font-size: 40px!important;
-    padding-left: 20px;
 }
 
 .shopping-cart {
@@ -42,15 +41,16 @@ body {
 }
 
 .nav-search {
-    justify-content: space-between;
+    justify-content: space-around;
     width: auto;
 }
 
 .div-search {
-    width: 850px;
+    width: auto;
     display: flex;
     justify-content: center;
 }
+
 
 .myAccount {
     padding-right: 25px;
