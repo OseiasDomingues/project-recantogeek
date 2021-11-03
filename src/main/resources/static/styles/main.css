@@ -1,13 +1,23 @@
+:root {
+    --main-color: #00acb7;
+    --background-color: #e9eae9;
+    --main-font: 'Open Sans', sans-serif;
+}
+
 body {
-    background-color: #e9eae9!important;
-    font-family: 'Open Sans', sans-serif;
+    background-color: var(--background-color);
+    font-family: var(--main-font);
+}
+
+.container {
+    width: 75%;
 }
 
 
 /*NavBar*/
 
 .navbar {
-    background-color: #00acb7!important;
+    background-color: var(--main-color)!important;
 }
 
 .logo {
@@ -105,18 +115,14 @@ body {
     margin-right: 10px;
     margin-bottom: 10px!important;
     width: 250px!important;
-    height: 329px;
+    height: auto;
     align-items: center;
 }
 
-.card-all h5,
-h6 {
-    text-align: center;
-}
-
-.card-all p {
-    text-align: center;
-    font-size: 14px;
+.card-desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card-all:hover {
@@ -127,8 +133,8 @@ h6 {
 .item-link {
     display: contents;
     text-decoration: none;
-    width: 250px;
-    height: 329px;
+    width: 250px!important;
+    height: auto;
     color: black;
     align-items: center;
 }
@@ -142,4 +148,17 @@ h6 {
     height: 250px;
     padding-top: 10px;
     padding-left: auto;
+}
+
+.name {
+    color: #bbb;
+    font-size: 15px;
+    text-align: center;
+}
+
+.price {
+    color: var(--main-color);
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
 }

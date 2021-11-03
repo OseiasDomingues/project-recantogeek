@@ -1,0 +1,23 @@
+.product-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.product-img {
+    height: auto;
+    width: 600px;
+}
+
+.title-product {
+    font-size: 40px;
+}
+
+.price-product {
+    color: #00acb7!important;
+    font-size: 50px;
+}
+
+.btn-custom {
+    margin-bottom: 10px!important;
+    width: 90%;
+}
