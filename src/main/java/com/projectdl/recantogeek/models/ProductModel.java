@@ -14,7 +14,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
 @RequiredArgsConstructor
 public class ProductModel {
 
@@ -28,7 +27,35 @@ public class ProductModel {
     @NotNull
     @Column(name = "price", nullable = false)
     private BigDecimal price;
+    @NotNull
+    @Column(name = "quantity", nullable = false)
+    private Integer quantity;
+    @NotBlank
+    @Column(name = "description", nullable = false)
+    private String description;
 
+
+
+    private Double installments;
+
+
+    public Double calcInstallments(){
+        if(price.intValue() <= 30){
+            return price.doubleValue()/7;
+        }else{
+            return price.doubleValue()/12;
+        }
+
+    }
+
+    public ProductModel(Long id, String name, BigDecimal price, Integer quantity, String description) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+        this.description = description;
+        installments = calcInstallments();
+    }
 
     @Override
     public boolean equals(Object o) {

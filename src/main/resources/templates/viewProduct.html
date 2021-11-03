@@ -103,7 +103,7 @@
                 <div class="card-body">
                     <h3 class="title-product" th:text="${product.name}"></h3>
                     <h2 class="price-product" th:text="'$ ' + ${product.price}"></h2>
-                    <p th:text="'ou 12x sem juros de $ ' + ${product.price}/12"></p>
+                    <p>ou <span th:text="${product.price} < 30 ? 7x: 12x "></span> sem juros de $<span th:text="${product.installments}"></span></p>
                     <button type="button" class="btn btn-primary btn-custom" data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop">
                         Editar
