@@ -10,7 +10,7 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <!-- CSS -->
     <link th:href="@{/styles/main.css}" rel="stylesheet"/>
-    <link th:href="@{/styles/product.css}" rel="stylesheet"/>
+    <link th:href="@{/styles/form.css}" rel="stylesheet"/>
     <!-- Icones -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <!-- Fonts -->
@@ -85,74 +85,33 @@
 
 </header>
 <article class="bg-white">
+
     <div class="container">
-        <ol class="breadcrumb mt-0 pt-2">
-            <li class="breadcrumb-item">Home</li>
-            <li class="breadcrumb-item"><a href="/products">Products</a></li>
-            <li class="breadcrumb-item active" aria-current="page" th:text="${product.name}"></li>
-        </ol>
-        <p class="h4" th:alt="${product.name}"></p>
-        <div class="product-container">
-            <div class="product-img border">
-
-                <img th:src="@{/images/camiseta.png}" class="card-img-top product-image" th:alt="${product.name}">
-
-            </div>
-            <div class="card border-0" style="width: 25rem;">
-                <div class="card-body">
-                    <h3 class="title-product" th:text="${product.name}"></h3>
-                    <h2 class="price-product" th:text="'$ ' + ${product.price}"></h2>
-                    <p th:text="'ou 12x sem juros de $ ' + ${product.price}/12"></p>
-                    <button type="button" class="btn btn-primary btn-custom" data-bs-toggle="modal"
-                            data-bs-target="#staticBackdrop">
-                        Editar
-                    </button>
-                    <form method="post" th:action="@{delete}" th:object="${product}">
-                        <input type="hidden" th:field="${product.id}"/>
-                        <button type="submit" value="Submit" class="btn btn-danger btn-custom">Apagar</button>
-                    </form>
+        <h1 class="pt-3 pb-3">Adicionar um novo Produto</h1>
+        <form method="post" action="#" th:object="${product}">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nome do Produto</label>
+                <input type="text" class="form-control" id="name" placeholder="Digite o nome do produto" name="name" required >
+                <div class="invalid-feedback">
+                    Por favor digite um produto.
                 </div>
             </div>
-        </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Preço</label>
+                <input type="number" class="form-control" id="price" placeholder="Digite o preço" name="price" onchange="setTwoNumberDecimal" min="0" max="5000" step="0.25" value="0.00" required >
+                <div class="invalid-feedback">
+                    Por favor digite um preço.
+                </div>
+            </div>
 
+            <button class="btn btn-custom" type="submit">Enviar</button>
+
+        </form>
     </div>
 
 </article>
-<!-- Button trigger modal -->
 
-
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <form method="post" th:action="@{update}" th:object="${product}">
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <input type="hidden" th:field="${product.id}"/>
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Name *" name="name">
-
-                        <label for="price" class="form-label">Price</label>
-                        <input type="text" class="form-control" id="price" placeholder="Price *" name="price">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                    <button type="submit" value="Submit" class="btn btn-primary">Salvar</button>
-                </div>
-            </form>
-        </div>
-
-    </div>
-</div>
-
-
-<div class="container ">
+<div class="container">
     <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>

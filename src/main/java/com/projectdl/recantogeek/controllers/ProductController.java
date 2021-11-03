@@ -33,12 +33,28 @@ public class ProductController {
         mv.addObject("product", product);
         return mv;
     }
-    @PostMapping
+    @GetMapping("/newproduct")
+    public ModelAndView getForm() {
+        return new ModelAndView("newproduct");
+    }
+
+    @PostMapping("/newproduct")
     public String insert(@Valid @ModelAttribute("product") ProductModel productModel, BindingResult result){
         if(result.hasErrors()){
+
             return "redirect:/products";
         }
-        productService.save(productModel);
+        ProductModel newProduct = productService.save(productModel);
+        return "redirect:/products/" + newProduct.getId();
+    }
+    @PostMapping("/delete")
+    public String delete(@ModelAttribute("product")ProductModel productModel){
+        productService.delete(productModel.getId());
         return "redirect:/products";
+    }
+    @PostMapping("/update")
+    public String update(@ModelAttribute("product")ProductModel productModel){
+        ProductModel updateProd = productService.update(productModel.getId(),productModel);
+        return "redirect:/products/" + updateProd.getId();
     }
 }

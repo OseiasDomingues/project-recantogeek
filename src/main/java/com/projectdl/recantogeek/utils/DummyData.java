@@ -18,7 +18,7 @@ public class DummyData {
     @PostConstruct
     public void mock(){
 
-        ProductModel p1 = new ProductModel(null, "Moleton 01", BigDecimal.valueOf(17.50));
+        ProductModel p1 = new ProductModel(null, "Camiseta Nevermore – Insane Edition", BigDecimal.valueOf(79.90));
         ProductModel p2 = new ProductModel(null, "Moleton 02", BigDecimal.valueOf(20.50));
         ProductModel p3 = new ProductModel(null, "Moleton 03", BigDecimal.valueOf(10.50));
         ProductModel p4 = new ProductModel(null, "Moleton 04", BigDecimal.valueOf(12.50));
