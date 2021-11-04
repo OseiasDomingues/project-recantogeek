@@ -1,5 +1,6 @@
 package com.projectdl.recantogeek.controllers;
 
+import com.projectdl.recantogeek.dto.AllProductsDTO;
 import com.projectdl.recantogeek.models.ProductModel;
 import com.projectdl.recantogeek.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
+
 //@RestController
 @Controller
 @RequestMapping("/products")
@@ -22,7 +25,11 @@ public class ProductController {
     public ModelAndView findAll() {
         ModelAndView mv = new ModelAndView("viewProductsList");
         List<ProductModel> productList = productService.findAll();
-        mv.addObject("productsList", productList);
+        List<AllProductsDTO> allProductsDTOS = productList
+                .stream()
+                .map(AllProductsDTO::new)
+                .collect(Collectors.toList());
+        mv.addObject("productsList", allProductsDTOS);
         return mv;
     }
 

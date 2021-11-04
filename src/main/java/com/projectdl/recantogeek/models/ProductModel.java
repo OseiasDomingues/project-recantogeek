@@ -30,18 +30,22 @@ public class ProductModel {
     @NotNull
     @Column(name = "price", nullable = false)
     private BigDecimal price;
-    @NotNull
-    @Column(name = "quantity", nullable = false)
-    private Integer quantity;
     @NotBlank
     @Column(name = "description", nullable = false)
+    @Lob@Basic(fetch = FetchType.LAZY)
     private String description;
     @ManyToMany
     @JoinTable(name = "product_category",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
+    @ToString.Exclude
     private List<CategoryModel> categoryModels = new ArrayList<>();
+
+    @NotBlank
+    @Column(name = "imageURL", nullable = false)
+    private String imageURL;
+
 
 
     @Column(name = "installments")
@@ -57,12 +61,12 @@ public class ProductModel {
 
     }
 
-    public ProductModel(Long id, String name, BigDecimal price, Integer quantity, String description) {
+    public ProductModel(Long id, String name, BigDecimal price,String description, String imageURL) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
         this.description = description;
+        this.imageURL = imageURL;
         installments = calcInstallments();
     }
 

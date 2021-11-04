@@ -96,7 +96,7 @@
         <div class="product-container">
             <div class="product-img border">
 
-                <img th:src="@{/images/camiseta.png}" class="card-img-top product-image" th:alt="${product.name}">
+                <img th:src="${product.imageURL}" class="card-img-top product-image" th:alt="${product.name}">
 
             </div>
             <div class="card border-0" style="width: 25rem;">
@@ -104,6 +104,7 @@
                     <h3 class="title-product" th:text="${product.name}"></h3>
                     <h2 class="price-product" th:text="${#numbers.formatCurrency(product.price)}"></h2>
                     <p>ou <span th:text="${product.price} < 30 ? 7x: 12x "></span> sem juros de <span th:text="${#numbers.formatCurrency(product.installments)}"></span></p>
+                    <p th:text="${product.description}" class="fw-light lh-base"></p>
                     <button type="button" class="btn btn-primary btn-custom" data-bs-toggle="modal"
                             data-bs-target="#staticBackdrop">
                         Editar

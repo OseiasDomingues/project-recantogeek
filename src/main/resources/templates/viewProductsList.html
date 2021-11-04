@@ -94,7 +94,7 @@
         <div class="row container-products">
             <div class="card card-all" th:each="product : ${productsList}">
                 <a class="item-link" th:href="@{/products/{id}(id=${product.id})}">
-                    <img th:src="@{/images/moleton.jpg}" class="card-img-top product-image" th:alt="${product.name}">
+                    <img th:src="${product.imageURL}" class="card-img-top product-image" th:alt="${product.name}">
                     <div class="card-body card-desc">
                         <h5 class="card-title name" th:text="${product.name}"></h5>
                         <p class="card-text price" th:text="${#numbers.formatCurrency(product.price)}"></p>
