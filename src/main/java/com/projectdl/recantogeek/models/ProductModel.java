@@ -7,6 +7,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Table(name = "product_model")
@@ -16,6 +18,7 @@ import java.util.Objects;
 @ToString
 @RequiredArgsConstructor
 public class ProductModel {
+
 
     @Id
     @Column(name = "id")
@@ -33,9 +36,15 @@ public class ProductModel {
     @NotBlank
     @Column(name = "description", nullable = false)
     private String description;
+    @ManyToMany
+    @JoinTable(name = "product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private List<CategoryModel> categoryModels = new ArrayList<>();
 
 
-
+    @Column(name = "installments")
     private Double installments;
 
 
