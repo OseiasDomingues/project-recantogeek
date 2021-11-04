@@ -1,6 +1,8 @@
 package com.projectdl.recantogeek.controllers;
 
 import com.projectdl.recantogeek.dto.AllProductsDTO;
+import com.projectdl.recantogeek.dto.OneProductDTO;
+import com.projectdl.recantogeek.mapper.ProductMapper;
 import com.projectdl.recantogeek.models.ProductModel;
 import com.projectdl.recantogeek.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +23,16 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
+    @Autowired
+    ProductMapper productMapper;
+
     @GetMapping
     public ModelAndView findAll() {
         ModelAndView mv = new ModelAndView("viewProductsList");
         List<ProductModel> productList = productService.findAll();
         List<AllProductsDTO> allProductsDTOS = productList
                 .stream()
-                .map(AllProductsDTO::new)
+                .map(productMapper::allToDTO)
                 .collect(Collectors.toList());
         mv.addObject("productsList", allProductsDTOS);
         return mv;
@@ -37,7 +42,8 @@ public class ProductController {
     public ModelAndView findById(@PathVariable Long id) {
         ModelAndView mv = new ModelAndView("viewProduct");
         ProductModel product = productService.findById(id);
-        mv.addObject("product", product);
+        OneProductDTO oneProductDTO = productMapper.oneToDTO(product);
+        mv.addObject("product", oneProductDTO);
         return mv;
     }
     @GetMapping("/newproduct")
