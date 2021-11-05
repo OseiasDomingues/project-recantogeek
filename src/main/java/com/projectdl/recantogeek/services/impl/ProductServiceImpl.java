@@ -45,6 +45,9 @@ public class ProductServiceImpl implements ProductService {
     private ProductModel updateData(ProductModel oldProd, ProductModel productModel) {
         oldProd.setName(productModel.getName());
         oldProd.setPrice(productModel.getPrice());
+        oldProd.setImageURL(productModel.getImageURL());
+        oldProd.setInstallments(productModel.calcInstallments());
+        oldProd.setDescription(productModel.getDescription());
         return oldProd;
     }
 }

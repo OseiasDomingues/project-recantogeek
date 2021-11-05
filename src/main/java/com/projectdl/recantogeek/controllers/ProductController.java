@@ -57,6 +57,7 @@ public class ProductController {
 
             return "redirect:/products";
         }
+        productModel.setInstallments(productModel.calcInstallments());
         ProductModel newProduct = productService.save(productModel);
         return "redirect:/products/" + newProduct.getId();
     }
