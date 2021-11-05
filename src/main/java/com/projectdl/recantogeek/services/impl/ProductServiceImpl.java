@@ -1,23 +1,40 @@
 package com.projectdl.recantogeek.services.impl;
 
+import com.projectdl.recantogeek.models.CategoryModel;
 import com.projectdl.recantogeek.models.ProductModel;
+import com.projectdl.recantogeek.repositories.CategoryRepository;
 import com.projectdl.recantogeek.repositories.ProductRepository;
 import com.projectdl.recantogeek.services.ProductService;
 import com.projectdl.recantogeek.services.exceptions.PageNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductRepository productRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
 
     public List<ProductModel> findAll() {
-        //todo productRepository.findAll(Sort.sort(Sort.Direction.ASC, "name"));
         return productRepository.findAll();
+    }
+
+    public List<ProductModel> findByCategory(Long id) {
+        List<ProductModel> list = productRepository.findAll();
+
+        return list
+                .stream()
+                .filter(x -> x.getCategoryModels()
+                        .stream()
+                        .anyMatch(y -> y.getId().equals(id)))
+                .collect(Collectors.toList());
     }
 
     @Override

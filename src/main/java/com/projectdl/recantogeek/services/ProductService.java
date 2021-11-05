@@ -16,5 +16,6 @@ public interface ProductService {
     ProductModel save(ProductModel productModel);
     void delete(Long id);
     ProductModel update(Long id, ProductModel productModel);
+    List<ProductModel> findByCategory(Long id);
 
 }

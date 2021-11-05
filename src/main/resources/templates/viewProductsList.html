@@ -64,11 +64,8 @@
                        aria-expanded="false"><span class="material-icons-outlined">reorder</span>&nbsp;All
                         Categorias</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Livros</a></li>
-                        <li><a class="dropdown-item" href="#">Vestuario</a></li>
-                        <li><a class="dropdown-item" href="#">Colecionaveis</a></li>
-                        <li><a class="dropdown-item" href="#">Decorações</a></li>
-                    </ul>
+                        <li><a class="dropdown-item" th:each="category : ${categoryList}" th:href="@{/products/category/{id}(id=${category.id})}"  th:text="${category.name}"></a></li>
+                     </ul>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="#">Produtos</a>
