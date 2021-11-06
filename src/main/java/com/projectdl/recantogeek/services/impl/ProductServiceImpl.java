@@ -31,9 +31,7 @@ public class ProductServiceImpl implements ProductService {
 
         return list
                 .stream()
-                .filter(x -> x.getCategoryModels()
-                        .stream()
-                        .anyMatch(y -> y.getId().equals(id)))
+                .filter(x -> x.getCategory().getId().equals(id))
                 .collect(Collectors.toList());
     }
 
@@ -65,6 +63,7 @@ public class ProductServiceImpl implements ProductService {
         oldProd.setImageURL(productModel.getImageURL());
         oldProd.setInstallments(productModel.calcInstallments());
         oldProd.setDescription(productModel.getDescription());
+        oldProd.setCategory(productModel.getCategory());
         return oldProd;
     }
 }

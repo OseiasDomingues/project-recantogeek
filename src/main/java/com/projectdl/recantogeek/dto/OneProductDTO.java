@@ -18,7 +18,7 @@ public class OneProductDTO {
     private String description;
     private Double installments;
     private String imageURL;
-    private List<CategoryModel> category;
+    private CategoryModel category;
 
     public OneProductDTO(ProductModel productModel) {
         id = productModel.getId();
@@ -27,6 +27,6 @@ public class OneProductDTO {
         imageURL = productModel.getImageURL();
         description = productModel.getDescription();
         installments = productModel.getInstallments();
-        category = productModel.getCategoryModels();
+        category = productModel.getCategory();
     }
 }

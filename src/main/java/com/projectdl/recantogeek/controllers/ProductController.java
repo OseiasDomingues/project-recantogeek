@@ -46,23 +46,30 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ModelAndView findById(@PathVariable Long id) {
+        List<CategoryModel> categoryList = categoryService.findAll();
         ModelAndView mv = new ModelAndView("viewProduct");
         ProductModel product = productService.findById(id);
         OneProductDTO oneProductDTO = productMapper.oneToDTO(product);
         mv.addObject("product", oneProductDTO);
+        mv.addObject("categoryList", categoryList);
         return mv;
     }
 
     @GetMapping("/newproduct")
     public ModelAndView getForm() {
-        return new ModelAndView("newproduct");
+        List<CategoryModel> categoryList = categoryService.findAll();
+        ModelAndView mv = new ModelAndView("newproduct");
+        mv.addObject("categoryList", categoryList);
+        return mv;
     }
 
     @GetMapping("category/{id}")
     public ModelAndView getByCategory(@PathVariable Long id) {
+        List<CategoryModel> categoryList = categoryService.findAll();
         ModelAndView mv = new ModelAndView("pageCategory");
         List<ProductModel> productList = productService.findByCategory(id);
         mv.addObject("productByCategory", productList);
+        mv.addObject("categoryList", categoryList);
         return mv;
     }
 

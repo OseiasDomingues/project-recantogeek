@@ -20,7 +20,7 @@ public class CategoryModel {
     private Long id;
 
     private String name;
-    @ManyToMany(mappedBy = "categoryModels")
+    @OneToMany(mappedBy = "category")
     @ToString.Exclude
     private List<ProductModel> productModels = new ArrayList<>();
 

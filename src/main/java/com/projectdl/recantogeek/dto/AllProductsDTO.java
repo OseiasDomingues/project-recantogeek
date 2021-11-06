@@ -16,7 +16,7 @@ public class AllProductsDTO {
     private String name;
     private BigDecimal price;
     private String imageURL;
-    private List<CategoryModel> category;
+    private CategoryModel category;
 
 
     public AllProductsDTO(ProductModel productModel) {
@@ -24,6 +24,6 @@ public class AllProductsDTO {
         name = productModel.getName();
         price = productModel.getPrice();
         imageURL = productModel.getImageURL();
-        category = productModel.getCategoryModels();
+        category = productModel.getCategory();
     }
 }

@@ -29,9 +29,9 @@
         <ol class="breadcrumb mt-0 pt-2">
             <li class="breadcrumb-item">Página Inicial</li>
             <li class="breadcrumb-item"><a href="/products">Produto</a></li>
-            <li class="breadcrumb-item active">Categoria</li>
+            <li class="breadcrumb-item" aria-current="page"><a  th:text="${productByCategory[0].category?.name}"></a></li>
         </ol>
-        <p class="h4">Produto por categoria</p>
+        <p class="h4" >Todos os <span th:text="${productByCategory[0].category?.name}"></span></p>
         <div class="row container-products">
             <div class="card card-all" th:each="product : ${productByCategory}">
                 <a class="item-link" th:href="@{/products/{id}(id=${product.id})}">

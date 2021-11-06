@@ -12,9 +12,7 @@ public interface ProductMapper {
 
     ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
-    @Mapping(source = "categoryModels", target = "category")
     AllProductsDTO allToDTO(ProductModel productModel);
 
-    @Mapping(source = "categoryModels", target = "category")
     OneProductDTO oneToDTO(ProductModel productModel);
 }
