@@ -76,7 +76,6 @@ public class ProductController {
     @PostMapping("/newproduct")
     public String insert(@Valid @ModelAttribute("product") ProductModel productModel, BindingResult result) {
         if (result.hasErrors()) {
-
             return "redirect:/products";
         }
         productModel.setInstallments(productModel.calcInstallments());

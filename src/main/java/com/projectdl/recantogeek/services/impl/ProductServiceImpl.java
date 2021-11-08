@@ -58,12 +58,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private ProductModel updateData(ProductModel oldProd, ProductModel productModel) {
-        oldProd.setName(productModel.getName());
-        oldProd.setPrice(productModel.getPrice());
-        oldProd.setImageURL(productModel.getImageURL());
-        oldProd.setInstallments(productModel.calcInstallments());
-        oldProd.setDescription(productModel.getDescription());
-        oldProd.setCategory(productModel.getCategory());
+        if (!productModel.getName().isEmpty()){
+            oldProd.setName(productModel.getName());
+        }
+        if (productModel.getPrice() != null){
+            oldProd.setPrice(productModel.getPrice());
+            oldProd.setInstallments(productModel.calcInstallments());
+        }
+        if (!productModel.getImageURL().isEmpty()){
+            oldProd.setImageURL(productModel.getImageURL());
+        }
+        if (!productModel.getDescription().isEmpty()){
+            oldProd.setDescription(productModel.getDescription());
+        }
+        if (productModel.getCategory() != null){
+            oldProd.setCategory(productModel.getCategory());
+        }
         return oldProd;
     }
 }

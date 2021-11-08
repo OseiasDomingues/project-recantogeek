@@ -69,7 +69,9 @@
                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                        aria-expanded="false"><span class="material-icons-outlined">reorder</span>&nbsp;Todas Categorias</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" th:each="category : ${categoryList}" th:href="@{/products/category/{id}(id=${category.id})}"  th:text="${category.name}"></a></li>
+                        <li><a class="dropdown-item" th:each="category : ${categoryList}"
+                               th:href="@{/products/category/{id}(id=${category.id})}" th:text="${category.name}"></a>
+                        </li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -95,7 +97,7 @@
             <li class="breadcrumb-item active" aria-current="page">Adicionar novo produto</li>
         </ol>
         <h1 class="pb-3">Adicionar um novo Produto</h1>
-        <form method="post" action="#" th:object="${product}" class="needs-validation" novalidate>
+        <form id="myform" method="post" action="#" th:object="${product}" class="needs-validation" novalidate>
 
 
             <div class="mb-3">
@@ -108,7 +110,8 @@
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Preço</label>
-                <input type="number" class="form-control" id="price" placeholder="Digite o preço do produto" name="price"
+                <input type="number" class="form-control" id="price" placeholder="Digite o preço do produto"
+                       name="price"
                        onchange="setTwoNumberDecimal" min="0" max="5000" step="0.01" required>
                 <div class="invalid-feedback">
                     Por favor digite o preço do produto.
@@ -121,6 +124,12 @@
                 <div class="invalid-feedback">
                     Por favor inserir link da imagem do produto
                 </div>
+            </div>
+            <div class="mb-3">
+                <label for="category" class="form-label">Selecione uma categoria</label>
+                <select id="category" class="form-select form-control" form="myform" name="category" aria-label="Default select example" >
+                    <option th:value="${category.id}" th:each="category : ${categoryList}"><span th:text="${category.name}"></span></option>
+                </select>
             </div>
             <div class="mb-3">
                 <label for="summernote" class="form-label">Descrição</label>
@@ -157,6 +166,7 @@
         tabsize: 2,
         height: 300
     });
+
 </script>
 <script>
 // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -177,6 +187,7 @@
     }, false);
   });
 })();
+
 </script>
 
 
