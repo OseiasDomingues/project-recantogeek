@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:href="@{/styles/error.css}" rel="stylesheet"/>
 </head>
 <body>
-<!--<h1 th:text="${error.timestamp}"></h1>
-<h1 th:text="${error.status}"></h1>
-<h1 th:text="${error.error}"></h1>
-<h1 th:text="${error.message}"></h1>
-<h1 th:text="${error.path}"></h1>-->
-
+<div class="container">
+    <div class="number" th:text="${error.status}"></div>
+    <div class="text"><span th:text="'Ooops... '"></span><br><span th:text=" ${error.message}"></span></div>
+    <a class="link" href="/products">return</a>
+</div>
 </body>
 </html>

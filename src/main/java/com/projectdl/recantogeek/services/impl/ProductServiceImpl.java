@@ -1,17 +1,13 @@
 package com.projectdl.recantogeek.services.impl;
 
-import com.projectdl.recantogeek.models.CategoryModel;
 import com.projectdl.recantogeek.models.ProductModel;
-import com.projectdl.recantogeek.repositories.CategoryRepository;
 import com.projectdl.recantogeek.repositories.ProductRepository;
 import com.projectdl.recantogeek.services.ProductService;
 import com.projectdl.recantogeek.services.exceptions.PageNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,8 +15,6 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     ProductRepository productRepository;
-    @Autowired
-    CategoryRepository categoryRepository;
 
     public List<ProductModel> findAll() {
         return productRepository.findAll();
@@ -42,6 +36,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductModel save(ProductModel productModel) {
+        productModel.setInstallments(productModel.calcInstallments());
         return productRepository.save(productModel);
     }
 
@@ -58,20 +53,20 @@ public class ProductServiceImpl implements ProductService {
     }
 
     private ProductModel updateData(ProductModel oldProd, ProductModel productModel) {
-        if (!productModel.getName().isEmpty()){
+        if (!productModel.getName().isEmpty()) {
             oldProd.setName(productModel.getName());
         }
-        if (productModel.getPrice() != null){
+        if (productModel.getPrice() != null) {
             oldProd.setPrice(productModel.getPrice());
             oldProd.setInstallments(productModel.calcInstallments());
         }
-        if (!productModel.getImageURL().isEmpty()){
+        if (!productModel.getImageURL().isEmpty()) {
             oldProd.setImageURL(productModel.getImageURL());
         }
-        if (!productModel.getDescription().isEmpty()){
+        if (!productModel.getDescription().isEmpty()) {
             oldProd.setDescription(productModel.getDescription());
         }
-        if (productModel.getCategory() != null){
+        if (productModel.getCategory() != null) {
             oldProd.setCategory(productModel.getCategory());
         }
         return oldProd;

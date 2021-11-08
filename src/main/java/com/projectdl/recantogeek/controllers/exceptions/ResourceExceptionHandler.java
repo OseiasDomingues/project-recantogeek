@@ -13,11 +13,11 @@ import java.time.Instant;
 public class ResourceExceptionHandler {
 
     @ExceptionHandler(PageNotFound.class)
-    public ModelAndView pageNotFound(PageNotFound e, HttpServletRequest request){
+    public ModelAndView pageNotFound(PageNotFound e, HttpServletRequest request) {
         ModelAndView mv = new ModelAndView("error");
         HttpStatus status = HttpStatus.NOT_FOUND;
         String error = "Page not found";
-        StandardError err = new StandardError(Instant.now(),status.value(),error,e.getMessage(),request.getRequestURI());
+        StandardError err = new StandardError(Instant.now(), status.value(), error, e.getMessage(), request.getRequestURI());
         mv.addObject("error", err);
         return mv;
     }

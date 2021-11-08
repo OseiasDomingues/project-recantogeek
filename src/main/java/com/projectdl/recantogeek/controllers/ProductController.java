@@ -7,9 +7,10 @@ import com.projectdl.recantogeek.models.CategoryModel;
 import com.projectdl.recantogeek.models.ProductModel;
 import com.projectdl.recantogeek.services.CategoryService;
 import com.projectdl.recantogeek.services.ProductService;
+import com.projectdl.recantogeek.services.exceptions.PageNotFound;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -17,7 +18,6 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//@RestController
 @Controller
 @RequestMapping("/products")
 public class ProductController {
@@ -32,55 +32,72 @@ public class ProductController {
 
     @GetMapping
     public ModelAndView findAll() {
+
         ModelAndView mv = new ModelAndView("viewProductsList");
+
         List<ProductModel> productList = productService.findAll();
-        List<CategoryModel> categoryList = categoryService.findAll();
         List<AllProductsDTO> allProductsDTOS = productList
                 .stream()
                 .map(productMapper::allToDTO)
                 .collect(Collectors.toList());
         mv.addObject("productsList", allProductsDTOS);
+
+        List<CategoryModel> categoryList = categoryService.findAll();
         mv.addObject("categoryList", categoryList);
+
         return mv;
     }
 
     @GetMapping("/{id}")
     public ModelAndView findById(@PathVariable Long id) {
-        List<CategoryModel> categoryList = categoryService.findAll();
+
         ModelAndView mv = new ModelAndView("viewProduct");
+
         ProductModel product = productService.findById(id);
         OneProductDTO oneProductDTO = productMapper.oneToDTO(product);
         mv.addObject("product", oneProductDTO);
+
+        List<CategoryModel> categoryList = categoryService.findAll();
         mv.addObject("categoryList", categoryList);
         return mv;
     }
 
     @GetMapping("/newproduct")
     public ModelAndView getForm() {
-        List<CategoryModel> categoryList = categoryService.findAll();
+
         ModelAndView mv = new ModelAndView("newproduct");
+
+        List<CategoryModel> categoryList = categoryService.findAll();
         mv.addObject("categoryList", categoryList);
+
         return mv;
     }
 
     @GetMapping("category/{id}")
     public ModelAndView getByCategory(@PathVariable Long id) {
-        List<CategoryModel> categoryList = categoryService.findAll();
-        ModelAndView mv = new ModelAndView("pageCategory");
-        List<ProductModel> productList = productService.findByCategory(id);
-        mv.addObject("productByCategory", productList);
-        mv.addObject("categoryList", categoryList);
-        return mv;
+
+            ModelAndView mv = new ModelAndView("pageCategory");
+
+            List<ProductModel> productList = productService.findByCategory(id);
+            if(productList.isEmpty()){
+                throw new PageNotFound("Página não encontrada");
+            }
+            mv.addObject("productByCategory", productList);
+
+            List<CategoryModel> categoryList = categoryService.findAll();
+            mv.addObject("categoryList", categoryList);
+
+            return mv;
+
+
     }
 
     @PostMapping("/newproduct")
-    public String insert(@Valid @ModelAttribute("product") ProductModel productModel, BindingResult result) {
-        if (result.hasErrors()) {
-            return "redirect:/products";
-        }
-        productModel.setInstallments(productModel.calcInstallments());
+    public String insert(@Valid @ModelAttribute("product") ProductModel productModel) {
+
         ProductModel newProduct = productService.save(productModel);
         return "redirect:/products/" + newProduct.getId();
+
     }
 
     @PostMapping("/delete")

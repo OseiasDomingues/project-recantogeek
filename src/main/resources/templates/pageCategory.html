@@ -22,14 +22,73 @@
     <title>Recanto Geek</title>
 </head>
 <body>
-<h1>Hello World</h1>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container">
+            <a class="navbar-brand logo" href="/products">RecantoGeek</a>
+            <div class="collapse navbar-collapse nav-search" id="navbarNav">
+                <div class="div-search">
+                    <form class="d-flex search-form">
+                        <input class="form-control me-2" type="search" placeholder="O que você está procurando ?"
+                               aria-label="Search">
+                        <button class="btn btn-light" type="submit">Buscar</button>
+                    </form>
+                </div>
+                <div class="dropdown myAccount">
+                    <button class="btn dropdown-toggle" type="button" id="dropdownMenu" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        Minha Conta
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                        <li><a class="dropdown-item" href="#">Login</a></li>
+                        <li><a class="dropdown-item" href="#">Register</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/products/newproduct">Adicionar Produto</a></li>
+                    </ul>
+                    <i class="material-icons-outlined shopping-cart nav-item ">shopping_cart</i>
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+    <div class="menu border-bottom">
+        <div class="container">
+            <ul class="nav">
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                       aria-expanded="false"><span class="material-icons-outlined">reorder</span>&nbsp;Todas Categorias</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" th:each="category : ${categoryList}"
+                               th:href="@{/products/category/{id}(id=${category.id})}" th:text="${category.name}"></a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">Produtos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">Lista de Clientes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="#">Contate-Nos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</header>
 
 <article>
     <div class="container">
         <ol class="breadcrumb mt-0 pt-2">
             <li class="breadcrumb-item">Página Inicial</li>
             <li class="breadcrumb-item"><a href="/products">Produto</a></li>
-            <li class="breadcrumb-item" aria-current="page"><a  th:text="${productByCategory[0].category?.name}"></a></li>
+            <li class="breadcrumb-item" aria-current="page"><a th:text="${productByCategory[0].category?.name}"></a></li>
         </ol>
         <p class="h4" >Todos os <span th:text="${productByCategory[0].category?.name}"></span></p>
         <div class="row container-products">
@@ -48,7 +107,23 @@
 
 </article>
 
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Home</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Features</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Pricing</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">FAQs</a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">About</a></li>
+        </ul>
+        <p class="text-center text-muted">&copy; 2021 Company, Inc</p>
+    </footer>
 </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>
