@@ -77,6 +77,9 @@ body {
     align-items: center;
     color: #00acb7;
 }
+.menu a:hover {
+     color: #00acb7e0
+     }
 
 
 /* Navegation */
